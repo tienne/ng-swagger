@@ -8,6 +8,9 @@ import { LocalStorageService } from './local-storage/local-storage.service';
 import { authReducer } from './auth/auth.reducer';
 import { AuthEffects } from './auth/auth.effects';
 
+import { swaggerReducer } from './swagger/swagger.reducer';
+import { SwaggerEffects } from './swagger/swagger.effects';
+
 export function getInitialState() {
   return LocalStorageService.loadInitialState();
 }
@@ -21,7 +24,8 @@ export function getInitialState() {
     // ngrx
     StoreModule.forRoot(
       {
-        auth: authReducer
+        auth: authReducer,
+        swagger: swaggerReducer
       },
       { initialState: getInitialState }
     ),

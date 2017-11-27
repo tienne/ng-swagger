@@ -12,6 +12,7 @@ import { login, logout, selectorAuth, routerTransition } from '@app/core';
 import { environment as env } from '@env/environment';
 
 import { selectorSettings } from './settings';
+import {selectorSwagger} from '@app/core/swagger/swagger.reducer';
 
 @Component({
   selector: 'anms-root',
@@ -39,6 +40,7 @@ export class AppComponent implements OnInit, OnDestroy {
     { link: 'settings', label: 'Settings' }
   ];
   isAuthenticated;
+  swagger;
 
   constructor(
     public overlayContainer: OverlayContainer,
@@ -74,6 +76,11 @@ export class AppComponent implements OnInit, OnDestroy {
           title ? `${title} - ${env.appName}` : env.appName
         );
       });
+
+    this.store
+      .select(selectorSwagger)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(swagger => this.swagger = swagger);
   }
 
   ngOnDestroy(): void {
@@ -87,5 +94,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   onLogoutClick() {
     this.store.dispatch(logout());
+  }
+
+  onSwaggerInit() {
+    this.store.dispatch({type: 'SWAGGER_INIT'});
   }
 }

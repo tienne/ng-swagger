@@ -43,7 +43,7 @@ export const metaReducers: MetaReducer<any, any>[] = [stateSetter];
       },
       {
         initialState: getInitialState,
-        metaReducers: metaReducers
+        // metaReducers: metaReducers
       }
     ),
     StoreDevtoolsModule.instrument({

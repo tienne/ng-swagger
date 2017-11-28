@@ -4,29 +4,31 @@ import { Actions, Effect } from '@ngrx/effects';
 import { LocalStorageService } from '../local-storage/local-storage.service';
 import { Action } from '@app/core';
 
+import { SwaggerService } from '@app/core/swagger/swagger.service';
 import { tap } from 'rxjs/operators/tap';
+import { map } from 'rxjs/operator/map';
+import { catchError } from 'rxjs/operators';
 
-import { parse } from 'swagger-parser';
 import { SWAGGER_INIT, SWAGGER_KEY } from '@app/core/swagger/swagger.reducer';
 
 @Injectable()
 export class SwaggerEffects {
   constructor(
     private actions$: Actions<Action>,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private swaggerService: SwaggerService
   ) {}
 
   @Effect({ dispatch: false })
-  swaggerInit() {
+  swaggerInitialize() {
     return this.actions$
       .ofType(SWAGGER_INIT)
       .pipe(
         tap(action => {
-          console.log(action);
+          this.swaggerService.swaggerInit().pipe();
           return this.localStorageService.setItem(SWAGGER_KEY, { swaggerInit: true });
         })
       );
-    // const swagger = parse('http://petstore.swagger.io/v2/swagger.json');
     // console.log(swagger);
   }
 

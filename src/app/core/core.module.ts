@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { LocalStorageService } from './local-storage/local-storage.service';
 import { authReducer } from './auth/auth.reducer';
@@ -10,6 +11,7 @@ import { AuthEffects } from './auth/auth.effects';
 
 import { swaggerReducer } from './swagger/swagger.reducer';
 import { SwaggerEffects } from './swagger/swagger.effects';
+import {SwaggerService} from '@app/core/swagger/swagger.service';
 
 export function getInitialState() {
   return LocalStorageService.loadInitialState();
@@ -29,10 +31,16 @@ export function getInitialState() {
       },
       { initialState: getInitialState }
     ),
-    EffectsModule.forRoot([AuthEffects])
+    StoreDevtoolsModule.instrument({
+      maxAge: 5
+    }),
+    EffectsModule.forRoot([AuthEffects, SwaggerEffects])
   ],
   declarations: [],
-  providers: [LocalStorageService]
+  providers: [
+    LocalStorageService,
+    SwaggerService
+  ]
 })
 export class CoreModule {
   constructor(

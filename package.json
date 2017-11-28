@@ -37,6 +37,7 @@
     "@ngrx/effects": "^4.1.1",
     "@ngrx/router-store": "^4.1.1",
     "@ngrx/store": "^4.1.1",
+    "@ngrx/store-devtools": "^4.1.1",
     "bootstrap": "4.0.0-alpha.6",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
@@ -50,7 +51,6 @@
   "devDependencies": {
     "@angular/cli": "1.5.0",
     "@angular/compiler-cli": "^5.0.0",
-    "@ngrx/store-devtools": "^4.1.1",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",
     "@types/swagger-parser": "^4.0.2",

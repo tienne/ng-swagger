@@ -1,7 +1,8 @@
 import { Action } from '../core.interfaces';
 
 export const initialState = {
-  swaggerInit: false
+  swaggerInit: false,
+  api: {}
 };
 
 export const SWAGGER_KEY = 'SWAGGER';
@@ -17,19 +18,12 @@ export const selectorSwagger = state => state.swagger;
 
 export function swaggerReducer(state = initialState, action: Action) {
   switch (action.type) {
-    // case AUTH_LOGIN:
+    // case SWAGGER_INIT:
     //   return Object.assign({}, state, {
-    //     isAuthenticated: true
-    //   });
-    //
-    // case AUTH_LOGOUT:
-    //   return Object.assign({}, state, {
-    //     isAuthenticated: false
+    //     api: action.payload
     //   });
 
     default:
-      console.log(action);
-      console.log(state);
       return state;
   }
 }

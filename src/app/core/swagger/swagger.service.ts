@@ -8,13 +8,22 @@ import { Spec, Schema } from 'swagger-schema-official';
 
 import { map } from 'rxjs/operator/map';
 import { catchError } from 'rxjs/operators/catchError';
+import {tap} from 'rxjs/operators';
 
 @Injectable()
 export class SwaggerService {
   constructor() { }
 
-  swaggerInit(): Observable<any> {
-    return this.swaggerParse('http://petstore.swagger.io/v2/swagger2.json');
+  swaggerInit() {
+    return this.swaggerParse('http://petstore.swagger.io/v2/swagger2.json')
+      .pipe(
+        // tap((api) => {
+        //   console.log(api);
+        // })
+        // map((api) => {
+        //   return api;
+        // })
+      );
   }
 
   /**
@@ -23,8 +32,6 @@ export class SwaggerService {
    * @returns {Observable<Spec>}
    */
   swaggerParse(url: string): Observable<Spec> {
-    return Observable.fromPromise(Swagger.parse(url)).pipe(
-      // map((api: Spec) => api)
-    );
+    return Observable.fromPromise(Swagger.parse(url));
   }
 }

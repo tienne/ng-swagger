@@ -25,7 +25,7 @@ export class SwaggerEffects {
       .ofType(SWAGGER_INIT)
       .pipe(
         tap(action => {
-          this.swaggerService.swaggerInit().pipe();
+          console.log('2');
           return this.localStorageService.setItem(SWAGGER_KEY, { swaggerInit: true });
         })
       );

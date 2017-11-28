@@ -1,7 +1,7 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { StoreModule } from '@ngrx/store';
+import {StoreModule, ActionReducer, MetaReducer} from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
@@ -11,11 +11,23 @@ import { AuthEffects } from './auth/auth.effects';
 
 import { swaggerReducer } from './swagger/swagger.reducer';
 import { SwaggerEffects } from './swagger/swagger.effects';
-import {SwaggerService} from '@app/core/swagger/swagger.service';
+import { SwaggerService } from '@app/core/swagger/swagger.service';
+
+
+export function stateSetter(reducer: ActionReducer<any>): ActionReducer<any> {
+  return function(state: any, action: any) {
+    if (action.type === 'SET_ROOT_STATE') {
+      return action.payload;
+    }
+    return reducer(state, action);
+  };
+}
 
 export function getInitialState() {
   return LocalStorageService.loadInitialState();
 }
+
+export const metaReducers: MetaReducer<any, any>[] = [stateSetter];
 
 @NgModule({
   imports: [
@@ -29,7 +41,10 @@ export function getInitialState() {
         auth: authReducer,
         swagger: swaggerReducer
       },
-      { initialState: getInitialState }
+      {
+        initialState: getInitialState,
+        metaReducers: metaReducers
+      }
     ),
     StoreDevtoolsModule.instrument({
       maxAge: 5

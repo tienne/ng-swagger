@@ -28,6 +28,7 @@
       "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
+        "hmr": "environments/environment.hmr.ts",
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
       }

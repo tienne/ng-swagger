@@ -11,6 +11,7 @@ import { filter } from 'rxjs/operators/filter';
 import { login, logout, selectorAuth, routerTransition } from '@app/core';
 import { environment as env } from '@env/environment';
 
+import { selectorSwagger } from '@app/swagger/swagger.reducer';
 import { selectorSettings } from './settings';
 
 @Component({
@@ -76,10 +77,10 @@ export class AppComponent implements OnInit, OnDestroy {
         );
       });
 
-    // this.store
-    //   .select(selectorSwagger)
-    //   .pipe(takeUntil(this.unsubscribe$))
-    //   .subscribe(swagger => this.swagger = swagger);
+    this.store
+      .select(selectorSwagger)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(swagger => this.swagger = swagger);
   }
 
   ngOnDestroy(): void {
@@ -96,6 +97,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   onSwaggerInit() {
-    // this.store.dispatch({type: 'SWAGGER_INIT'});
+    this.store.dispatch({type: 'SWAGGER_INIT'});
   }
 }

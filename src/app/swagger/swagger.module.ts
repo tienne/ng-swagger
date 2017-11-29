@@ -14,6 +14,9 @@ import { SwaggerService } from '@app/swagger/swagger.service';
     StoreModule.forFeature('swagger', swaggerReducer),
     EffectsModule.forFeature([SwaggerEffects])
   ],
-  declarations: [SwaggerService]
+  declarations: [],
+  providers: [
+    SwaggerService
+  ]
 })
 export class SwaggerModule { }

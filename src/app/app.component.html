@@ -3,17 +3,13 @@
   <mat-sidenav #sidenav mode="side" opened="true" position="start">
     <div class="branding"><img [src]="logo"/> <span></span></div>
     <mat-nav-list>
-      <a mat-list-item *ngFor="let item of navigationSideMenu" (click)="sidenav.close()"
+      <a mat-list-item *ngFor="let item of navigationSideMenu"
          [routerLink]="[item.link]" routerLinkActive="active">
         {{item.label}}
       </a>
     </mat-nav-list>
   </mat-sidenav>
-
-  <mat-sidenav #detail mode="side" opened="true" position="end">
-
-  </mat-sidenav>
-
+  
   <div class="wrapper">
 
     <mat-toolbar color="primary">

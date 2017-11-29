@@ -9,11 +9,6 @@ import { LocalStorageService } from './local-storage/local-storage.service';
 import { authReducer } from './auth/auth.reducer';
 import { AuthEffects } from './auth/auth.effects';
 
-import { swaggerReducer } from './swagger/swagger.reducer';
-import { SwaggerEffects } from './swagger/swagger.effects';
-import { SwaggerService } from '@app/core/swagger/swagger.service';
-
-
 export function stateSetter(reducer: ActionReducer<any>): ActionReducer<any> {
   return function(state: any, action: any) {
     if (action.type === 'SET_ROOT_STATE') {
@@ -39,22 +34,20 @@ export const metaReducers: MetaReducer<any, any>[] = [stateSetter];
     StoreModule.forRoot(
       {
         auth: authReducer,
-        swagger: swaggerReducer
       },
       {
         initialState: getInitialState,
-        // metaReducers: metaReducers
+        metaReducers: metaReducers
       }
     ),
     StoreDevtoolsModule.instrument({
       maxAge: 5
     }),
-    EffectsModule.forRoot([AuthEffects, SwaggerEffects])
+    EffectsModule.forRoot([AuthEffects])
   ],
   declarations: [],
   providers: [
     LocalStorageService,
-    SwaggerService
   ]
 })
 export class CoreModule {

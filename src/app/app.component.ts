@@ -12,7 +12,6 @@ import { login, logout, selectorAuth, routerTransition } from '@app/core';
 import { environment as env } from '@env/environment';
 
 import { selectorSettings } from './settings';
-import {selectorSwagger} from '@app/core/swagger/swagger.reducer';
 
 @Component({
   selector: 'anms-root',
@@ -77,10 +76,10 @@ export class AppComponent implements OnInit, OnDestroy {
         );
       });
 
-    this.store
-      .select(selectorSwagger)
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(swagger => this.swagger = swagger);
+    // this.store
+    //   .select(selectorSwagger)
+    //   .pipe(takeUntil(this.unsubscribe$))
+    //   .subscribe(swagger => this.swagger = swagger);
   }
 
   ngOnDestroy(): void {
@@ -97,6 +96,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   onSwaggerInit() {
-    this.store.dispatch({type: 'SWAGGER_INIT'});
+    // this.store.dispatch({type: 'SWAGGER_INIT'});
   }
 }

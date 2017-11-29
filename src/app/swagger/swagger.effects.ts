@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 
-import { LocalStorageService } from '../local-storage/local-storage.service';
-import { Action } from '@app/core';
+import { LocalStorageService, Action } from '@app/core';
 
-import { SwaggerService } from '@app/core/swagger/swagger.service';
+import { SwaggerService } from '@app/swagger/swagger.service';
 import { tap } from 'rxjs/operators/tap';
 import { map } from 'rxjs/operator/map';
 import { catchError } from 'rxjs/operators';
 
-import { SWAGGER_INIT, SWAGGER_KEY } from '@app/core/swagger/swagger.reducer';
+import { SWAGGER_INIT, SWAGGER_KEY } from '@app/swagger/swagger.reducer';
 
 @Injectable()
 export class SwaggerEffects {

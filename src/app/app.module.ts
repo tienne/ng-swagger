@@ -10,6 +10,8 @@ import { CoreModule } from '@app/core';
 import { SettingsModule } from './settings';
 import { StaticModule } from './static';
 
+import { SwaggerModule } from '@app/swagger/swagger.module';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -28,6 +30,9 @@ import { AppComponent } from './app.component';
     // features
     StaticModule,
     SettingsModule,
+
+    // swagger
+    SwaggerModule,
 
     // app
     AppRoutingModule

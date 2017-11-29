@@ -1,4 +1,4 @@
-import { Action } from '../core.interfaces';
+import { Action } from '@app/core';
 
 export const initialState = {
   swaggerInit: false,
